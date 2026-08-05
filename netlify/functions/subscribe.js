@@ -10,7 +10,7 @@
 // 4. Your API key never appears in any file that gets sent to a visitor's browser -- it only lives
 //    on Netlify's servers as an environment variable.
 
-const MAILERLITE_GROUP_ID = '191977816645961148';
+const MAILERLITE_GROUP_ID = '194991896018290530';
 
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
