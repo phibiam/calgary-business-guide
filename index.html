@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Guide — Calgary Small Business Financial Blind Spots</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2e4a;
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --blue-mid: #dbeafe;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --text: #111827;
+    --text-mid: #374151;
+    --border: #e5e7eb;
+    --white: #ffffff;
+    --green: #16a34a;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 72px 24px 64px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 700px;
+    margin: 0 auto 16px;
+    color: #fff;
+  }
+  .hero h1 span { color: #93c5fd; }
+  .hero-sub {
+    font-size: 18px;
+    color: #93c5fd;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    font-weight: 400;
+  }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 32px;
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+  .form-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .form-card p {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus { border-color: var(--blue); }
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover { background: #1d4ed8; }
+  .privacy-note {
+    font-size: 12px;
+    color: var(--gray);
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  /* SUCCESS STATE */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 8px 0;
+  }
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    background: #dcfce7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 26px;
+  }
+  .success-state h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .success-state p {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+  .download-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--green);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .download-btn:hover { background: #15803d; }
+
+  /* WHAT YOU'LL LEARN */
+  .section { padding: 64px 24px; }
+  .section-inner { max-width: 720px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 36px;
+    line-height: 1.25;
+  }
+
+  .blind-spots { display: flex; flex-direction: column; gap: 16px; }
+  .spot {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--white);
+    transition: box-shadow 0.2s;
+  }
+  .spot:hover { box-shadow: 0 4px 16px rgba(37,99,235,0.08); border-color: #bfdbfe; }
+  .spot-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--blue-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .spot-content h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .spot-content p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+  /* ABOUT */
+  .about-section { background: var(--gray-light); }
+  .about-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .about-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .about-text h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .about-text .title { font-size: 13px; color: var(--blue); font-weight: 600; margin-bottom: 10px; }
+  .about-text p { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+
+  /* CTA BOTTOM */
+  .cta-bottom {
+    background: var(--blue);
+    color: #fff;
+    text-align: center;
+    padding: 56px 24px;
+  }
+  .cta-bottom h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 700; margin-bottom: 12px; color: #fff; }
+  .cta-bottom p { font-size: 16px; color: #bfdbfe; margin-bottom: 28px; }
+  .contact-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .contact-pill:hover { background: rgba(255,255,255,0.25); }
+
+  /* FOOTER */
+  footer {
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 520px) {
+    .form-card { padding: 28px 20px; }
+    .about-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Free Guide for Calgary Business Owners</div>
+  <h1>Is Your Business One Bad Day Away From a <span>Financial Crisis?</span></h1>
+  <p class="hero-sub">Download the free guide and find out the 5 financial blind spots most small business owners never see coming.</p>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <div id="form-state">
+      <h2>Get Your Free Guide</h2>
+      <p>Enter your name and email — your download link appears instantly.</p>
+      <div class="form-group">
+        <label for="fname">First name</label>
+        <input type="text" id="fname" placeholder="e.g. Sarah" autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="femail">Email address</label>
+        <input type="email" id="femail" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <button class="submit-btn" onclick="handleSubmit()">Send Me the Free Guide →</button>
+      <p class="privacy-note">No spam. Unsubscribe anytime. Your info stays private.</p>
+    </div>
+
+    <div class="success-state" id="success-state">
+      <div class="success-icon">✓</div>
+      <h2 id="success-name">Here's your free guide!</h2>
+      <p>Click below to download your copy of <em>The Calgary Small Business Owner's Financial Blind Spots</em>.</p>
+      <a class="download-btn" href="calgary_small_business_financial_blindspots.pdf" download>
+        ⬇ Download Free Guide (PDF)
+      </a>
+      <p style="margin-top:16px;font-size:12px;color:#6b7280;">Philip will follow up with a personal note within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">What's inside</p>
+    <h2>5 Financial Blind Spots That Could Sink Your Business</h2>
+    <div class="blind-spots">
+      <div class="spot">
+        <div class="spot-num">1</div>
+        <div class="spot-content">
+          <h3>No key person insurance</h3>
+          <p>What happens to your business if you're suddenly unable to work? Most owners have no plan.</p>
+        </div>
+      </div>
+      <div class="spot">
+        <div class="spot-num">2</div>
+        <div class="spot-content">
+          <h3>Relying on personal savings with no continuity plan</h3>
+          <p>When the business hits a rough patch, personal savings take the hit — silently eroding your family's future.</p>
+        </div>
+      </div>
+      <div class="spot">
+        <div class="spot-num">3</div>
+        <div class="spot-content">
+          <h3>Life insurance not tied to business loans or partnerships</h3>
+          <p>If you've signed a personal guarantee on a business loan, your family may inherit that debt.</p>
+        </div>
+      </div>
+      <div class="spot">
+        <div class="spot-num">4</div>
+        <div class="spot-content">
+          <h3>No group benefits strategy for retaining employees</h3>
+          <p>A well-structured benefits plan can be a stronger retention tool than a pay raise — at a cost that might surprise you.</p>
+        </div>
+      </div>
+      <div class="spot">
+        <div class="spot-num">5</div>
+        <div class="spot-content">
+          <h3>Mixing personal and business financial risk</h3>
+          <p>When your finances are entangled, every business risk is a personal one. There's a cleaner way.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-avatar">PI</div>
+      <div class="about-text">
+        <h3>Philip Ibiam</h3>
+        <p class="title">Licensed Financial Services Professional · Calgary, AB</p>
+        <p>Philip is a licensed financial services professional and founder of SMACD Solutions Inc. With a background in data analytics and over 15 years of experience across enterprise and consulting roles, Philip helps Calgary small business owners identify and close the financial gaps that put their businesses — and families — at risk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-bottom">
+  <h2>Ready to close your blind spots?</h2>
+  <p>Book a free 20-minute Financial Protection Review — no pressure, no pitch, just clarity.</p>
+  <div class="contact-row">
+    <a class="contact-pill" href="mailto:phibiam@gmail.com">✉ phibiam@gmail.com</a>
+    <a class="contact-pill" href="tel:5878890291">📞 587-889-0291</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Philip Ibiam · Licensed Financial Services Professional · Calgary, Alberta</p>
+  <p style="margin-top:6px;">This page is for informational purposes only and does not constitute financial or legal advice.</p>
+</footer>
+
+<script>
+  async function handleSubmit() {
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    if (!name) { alert('Please enter your first name.'); return; }
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+
+    const btn = document.querySelector('.submit-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const response = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email })
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok && result.success) {
+        document.getElementById('form-state').style.display = 'none';
+        const success = document.getElementById('success-state');
+        success.style.display = 'block';
+        document.getElementById('success-name').textContent = 'Here\'s your guide, ' + name + '!';
+      } else {
+        // Real failure -- tell the visitor honestly instead of pretending it worked.
+        alert('Something went wrong sending your guide. Please try again, or email phibiam@gmail.com directly.');
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    } catch (err) {
+      alert('Network error. Please try again, or email phibiam@gmail.com directly.');
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>
