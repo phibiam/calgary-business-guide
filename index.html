@@ -124,9 +124,8 @@
     margin-top: 12px;
   }
 
-  /* SUCCESS STATE */
+  /* DOWNLOAD STATE (always visible — no form gate) */
   .success-state {
-    display: none;
     text-align: center;
     padding: 8px 0;
   }
@@ -288,31 +287,15 @@
   <h1>Is Your Business One Bad Day Away From a <span>Financial Crisis?</span></h1>
   <p class="hero-sub">Download the free guide and find out the 5 financial blind spots most small business owners never see coming.</p>
 
-  <!-- FORM CARD -->
+  <!-- DOWNLOAD CARD (form removed 2026-11-19 — lead capture now happens on the ibiamfinancial.com homepage via Zoho) -->
   <div class="form-card">
-    <div id="form-state">
-      <h2>Get Your Free Guide</h2>
-      <p>Enter your name and email — your download link appears instantly.</p>
-      <div class="form-group">
-        <label for="fname">First name</label>
-        <input type="text" id="fname" placeholder="e.g. Sarah" autocomplete="given-name">
-      </div>
-      <div class="form-group">
-        <label for="femail">Email address</label>
-        <input type="email" id="femail" placeholder="you@example.com" autocomplete="email">
-      </div>
-      <button class="submit-btn" onclick="handleSubmit()">Send Me the Free Guide →</button>
-      <p class="privacy-note">No spam. Unsubscribe anytime. Your info stays private.</p>
-    </div>
-
     <div class="success-state" id="success-state">
       <div class="success-icon">✓</div>
-      <h2 id="success-name">Here's your free guide!</h2>
+      <h2>Here's your free guide!</h2>
       <p>Click below to download your copy of <em>The Calgary Small Business Owner's Financial Blind Spots</em>.</p>
       <a class="download-btn" href="calgary_small_business_financial_blindspots.pdf" download>
         ⬇ Download Free Guide (PDF)
       </a>
-      <p style="margin-top:16px;font-size:12px;color:#6b7280;">Philip will follow up with a personal note within 24 hours.</p>
     </div>
   </div>
 </section>
@@ -370,7 +353,7 @@
       <div class="about-text">
         <h3>Philip Ibiam</h3>
         <p class="title">Licensed Financial Services Professional · Calgary, AB</p>
-        <p>Philip is a licensed financial services professional and founder of SMACD Solutions Inc. With a background in data analytics and over 15 years of experience across enterprise and consulting roles, Philip helps Calgary small business owners identify and close the financial gaps that put their businesses — and families — at risk.</p>
+        <p>Philip is a licensed financial services professional and founder of Ibiam Financial. With a background in data analytics and over 15 years of experience across enterprise and consulting roles, Philip helps Calgary small business owners identify and close the financial gaps that put their businesses — and families — at risk.</p>
       </div>
     </div>
   </div>
@@ -379,9 +362,9 @@
 <!-- BOTTOM CTA -->
 <section class="cta-bottom">
   <h2>Ready to close your blind spots?</h2>
-  <p>Book a free 20-minute Financial Protection Review — no pressure, no pitch, just clarity.</p>
+  <p>Book a free 30-minute Financial Protection Review — no pressure, no pitch, just clarity.</p>
   <div class="contact-row">
-    <a class="contact-pill" href="mailto:phibiam@gmail.com">✉ phibiam@gmail.com</a>
+    <a class="contact-pill" href="mailto:philip@ibiamfinancial.com">✉ philip@ibiamfinancial.com</a>
     <a class="contact-pill" href="tel:5878890291">📞 587-889-0291</a>
   </div>
 </section>
@@ -390,46 +373,6 @@
   <p>© 2026 Philip Ibiam · Licensed Financial Services Professional · Calgary, Alberta</p>
   <p style="margin-top:6px;">This page is for informational purposes only and does not constitute financial or legal advice.</p>
 </footer>
-
-<script>
-  async function handleSubmit() {
-    const name = document.getElementById('fname').value.trim();
-    const email = document.getElementById('femail').value.trim();
-    if (!name) { alert('Please enter your first name.'); return; }
-    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-
-    const btn = document.querySelector('.submit-btn');
-    const originalText = btn.textContent;
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    try {
-      const response = await fetch('/.netlify/functions/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email })
-      });
-
-      const result = await response.json().catch(() => ({}));
-
-      if (response.ok && result.success) {
-        document.getElementById('form-state').style.display = 'none';
-        const success = document.getElementById('success-state');
-        success.style.display = 'block';
-        document.getElementById('success-name').textContent = 'Here\'s your guide, ' + name + '!';
-      } else {
-        // Real failure -- tell the visitor honestly instead of pretending it worked.
-        alert('Something went wrong sending your guide. Please try again, or email phibiam@gmail.com directly.');
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }
-    } catch (err) {
-      alert('Network error. Please try again, or email phibiam@gmail.com directly.');
-      btn.textContent = originalText;
-      btn.disabled = false;
-    }
-  }
-</script>
 
 </body>
 </html>
